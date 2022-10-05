@@ -5,11 +5,8 @@ import string
 import soundfile as sf
 #from random_word import RandomWords
 import requests
-#import bot as bot
 
-
-
-# All this to import Whisper # from stackoverflow
+# This to import Whisper # from stackoverflow
 import collections.abc
 #hyper needs the four following aliases to be done manually.
 collections.Iterable = collections.abc.Iterable
@@ -17,7 +14,7 @@ collections.Mapping = collections.abc.Mapping
 collections.MutableSet = collections.abc.MutableSet
 collections.MutableMapping = collections.abc.MutableMapping
 
-# Text Generator Macine #
+# Text Generator Model from OpenAI #
 import whisper
 
 
@@ -25,7 +22,8 @@ import whisper
 
 key = "Your Speechace Key here"
 api_endpoint = "https://api.speechace.co" 
-url = api_endpoint + "/api/scoring/text/v0.5/json"
+api_version = "/api/scoring/text/v0.9/json"
+url = api_endpoint + api_version
 dialect = "en-us"
 user_id = "81ozow"
 
@@ -61,7 +59,6 @@ def whispertranscribe(model, audio):
     # Model work and send to Whisper #
     model = whisper.load_model(model)
     result = model.transcribe('temp.wav')
-    #jresult = result.json()
 
     return result['text']
 
